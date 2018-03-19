@@ -4,8 +4,8 @@ $('#play').on('click', function(){
 game.play();
 })
 
-$(document).on('click','#over',function(){
-    game.over();
+$(document).on('click','#end',function(){
+    game.finished();
 })
     // put together array of questions with array of answers and the correct answer
       let questions = [{
@@ -47,8 +47,9 @@ $(document).on('click','#over',function(){
         countdown: function(){
             game.counter--;
             $('#counter').html(game.counter);
-            if(game.counter<=0){
-                game.over();
+            if(game.counter==0){
+                console.log("time");
+                game.finished();
             }
         },
         // define the play function
@@ -59,56 +60,56 @@ $(document).on('click','#over',function(){
             for(var i=0; i<questions.length; i++){
                 $('#interiorContainer').append('<h2>' + questions[i].question + '<h2>');
                 for (var j=0; j<questions[i].answers.length; j++){
-                    $("#interiorContainer").append("<p><input type = 'radio' name= ' question- " + i + " ' value= ' " + questions[i].answers[j] + " ' ><br> " + questions[i].answers[j] + "<br><p>");
+                    $("#interiorContainer").append("<p><input type = 'radio' name= ' question- " + i + " ' value= ' " + questions[i].answers[j] + " ' > " + questions[i].answers[j] + "<br><p>");
             }
         }
         $('#interiorContainer').append('<br><button id="end">Done!</button>')
     },
         //  define game over function, see if correct answer is checked, add to correct/incorrect tally
-        over: function(){
-            $.each($('input[name="question-0]":checked'), function(){
+        finished: function(){
+            $.each($('input[name="question-0"]:checked'), function(){
             if ($(this).val()==questions[0].correctAnswer){
                 game.correct++;
             } else { 
                 game.incorrect++;
             }
         })
-        $.each($('input[name="question-1]":checked'), function(){
+        $.each($('input[name="question-1"]:checked'), function(){
             if ($(this).val()==questions[1].correctAnswer){
                 game.correct++;
             } else { 
                 game.incorrect++;
             }
         })
-        $.each($('input[name="question-2]":checked'), function(){
+        $.each($('input[name="question-2"]:checked'), function(){
             if ($(this).val()==questions[2].correctAnswer){
                 game.correct++;
             } else { 
                 game.incorrect++;
             }
         })
-        $.each($('input[name="question-3]":checked'), function(){
+        $.each($('input[name="question-3"]:checked'), function(){
             if ($(this).val()==questions[3].correctAnswer){
                 game.correct++;
             } else { 
                 game.incorrect++;
             }
         })
-        $.each($('input[name="question-4]":checked'), function(){
+        $.each($('input[name="question-4"]:checked'), function(){
             if ($(this).val()==questions[4].correctAnswer){
                 game.correct++;
             } else { 
                 game.incorrect++;
             }
         })
-        $.each($('input[name="question-5]":checked'), function(){
+        $.each($('input[name="question-5"]:checked'), function(){
             if ($(this).val()==questions[5].correctAnswer){
                 game.correct++;
             } else { 
                 game.incorrect++;
             }
         })
-        $.each($('input[name="question-6]":checked'), function(){
+        $.each($('input[name="question-6"]:checked'), function(){
             if ($(this).val()==questions[6].correctAnswer){
                 game.correct++;
             } else { 
@@ -117,15 +118,15 @@ $(document).on('click','#over',function(){
         });
         this.result();
         // create results page that replaces the questions page
-
         },
+
         result:function(){
             clearInterval(timer);
             $('#interiorContainer h2').remove();
-            $('#interiorContainer').html("<h2>Congratulations</h2>")
-            $('#interiorContainer').append("<h3>Correct Answers: "+ this.correct+"</h3>")
-            $('#interiorContainer').append("<h3>Incorrect Answers: "+ this.incorrect+"</h3>")
-            $('#interiorContainer').append("<h3>Unanswered questions: "+ (questions.length-(this.incorrect+this.correct))+"</h3>")
+            $('#interiorContainer').html("<h3>Congratulations</h3>");
+            $('#interiorContainer').append("<h4>Correct Answers: "+ this.correct+"</h4>");
+            $('#interiorContainer').append("<h4>Incorrect Answers: "+ this.incorrect+"</h4>");
+            $('#interiorContainer').append("<h4>Unanswered questions: "+ (questions.length-(this.incorrect+this.correct))+"</h4>");
         }
     }
 

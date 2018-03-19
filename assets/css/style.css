@@ -5,12 +5,13 @@ h1 {
     color: whitesmoke !important;
     font-family: 'Cabin Sketch', cursive;
     font-size: 50px;
+    margin-bottom: 10px;
 }
 .jumbotron {
     background: url(../images/galaxy.jpg); 
 }
 .lead {
-    font-family: 'Fira Sans Condensed', sans-serif !important;
+    font-family: 'Timmana', sans-serif !important;
     color:whitesmoke !important;
     font-size: 30px !important;
 }
@@ -34,4 +35,16 @@ p {
 }
 #end {
     margin-bottom: 40px;
+}
+h3 {
+    color: whitesmoke;
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 40px;
+    margin-left: 105px;
+}
+h4 {
+    color: whitesmoke;
+    font-family: 'Timmana', sans-serif;
+    font-size: 30px; 
+    margin-left: 105px;
 }
