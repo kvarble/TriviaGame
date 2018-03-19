@@ -69,72 +69,68 @@ $(document).on('click','#end',function(){
         finished: function(){
 
 
-    //     for (var i=0; i<questions.length; i++){ 
-    //         game.checking(i)
+        for (var i=0; i<questions.length; i++){
+            $.each($("input[name='question-"+i+"']:checked"), function() {
+                console.log($(this).val())
+            if ($(this).val()== questions[i].correctAnswer){
+                game.correct++;
+                console.log("hjkl"+i)
+            } else { 
+                game.incorrect++;
+                console.log("asdf")
+            }
+        })
+    }
+    // $.each($('input[name="question-0"]:checked'), function(){
+    //     if ($(this).val()==questions[0].correctAnswer){
+    //         game.correct++;
+    //     } else { 
+    //         game.incorrect++;
     //     }
-    // },
-    //       checking: function(i){   
-    //         $.each($("input[name='question-"+i+"']:checked"), function() {
-    //             console.log($(this).val())
-    //         if ($(this).val()== questions[i].correctAnswer){
+    // })
+
+    //     $.each($('input[name="question-1"]:checked'), function(){
+    //         if ($(this).val()==questions[1].correctAnswer){
     //             game.correct++;
-    //             console.log("hjkl"+i)
     //         } else { 
     //             game.incorrect++;
-    //             console.log("asdf")
     //         }
     //     })
-    
-    $.each($('input[name="question-0"]:checked'), function(){
-        if ($(this).val()==questions[0].correctAnswer){
-            game.correct++;
-        } else { 
-            game.incorrect++;
-        }
-    })
-
-        $.each($('input[name="question-1"]:checked'), function(){
-            if ($(this).val()==questions[1].correctAnswer){
-                game.correct++;
-            } else { 
-                game.incorrect++;
-            }
-        })
-        $.each($('input[name="question-2"]:checked'), function(){
-            if ($(this).val()==questions[2].correctAnswer){
-                game.correct++;
-            } else { 
-                game.incorrect++;
-            }
-        })
-        $.each($('input[name="question-3"]:checked'), function(){
-            if ($(this).val()==questions[3].correctAnswer){
-                game.correct++;
-            } else { 
-                game.incorrect++;
-            }
-        })
-        $.each($('input[name="question-4"]:checked'), function(){
-            if ($(this).val()==questions[4].correctAnswer){
-                game.correct++;
-            } else { 
-                game.incorrect++;
-            }
-        })
-        $.each($('input[name="question-5"]:checked'), function(){
-            if ($(this).val()==questions[5].correctAnswer){
-                game.correct++;
-            } else { 
-                game.incorrect++;
-            }
-        })
-        $.each($('input[name="question-6"]:checked'), function(){
-            if ($(this).val()==questions[6].correctAnswer){
-                game.correct++;
-            } else { 
-                game.incorrect++;
-            } 
-        })
+    //     $.each($('input[name="question-2"]:checked'), function(){
+    //         if ($(this).val()==questions[2].correctAnswer){
+    //             game.correct++;
+    //         } else { 
+    //             game.incorrect++;
+    //         }
+    //     })
+    //     $.each($('input[name="question-3"]:checked'), function(){
+    //         if ($(this).val()==questions[3].correctAnswer){
+    //             game.correct++;
+    //         } else { 
+    //             game.incorrect++;
+    //         }
+    //     })
+    //     $.each($('input[name="question-4"]:checked'), function(){
+    //         if ($(this).val()==questions[4].correctAnswer){
+    //             game.correct++;
+    //         } else { 
+    //             game.incorrect++;
+    //         }
+    //     })
+    //     $.each($('input[name="question-5"]:checked'), function(){
+    //         if ($(this).val()==questions[5].correctAnswer){
+    //             game.correct++;
+    //         } else { 
+    //             game.incorrect++;
+    //         }
+    //     })
+    //     $.each($('input[name="question-6"]:checked'), function(){
+    //         if ($(this).val()==questions[6].correctAnswer){
+    //             game.correct++;
+    //         } else { 
+    //             game.incorrect++;
+    //         } 
+    //     })
         this.result();
         
         // create results page that replaces the questions page
