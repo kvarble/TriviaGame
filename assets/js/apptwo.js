@@ -11,31 +11,31 @@ $(document).on('click','#end',function(){
       let questions = [{
         question: "How many official planets are in the solar system?", 
         answers: ["7", "8", "9"],
-        correctAnswer: [1],
+        correctAnswer: 1
     } , {
         question: "When two full moons are in the same month, the second is called a blue moon. How often do blue moons occur?", 
         answers: ["1 1/2 to 2 years", "2 1/2 to 3 years", "4 1/2 to 5 years"],
-        correctAnswer: [1],
+        correctAnswer: 1
     } , {
         question: "What color is the outermost arc on a rainbow?", 
         answers: ["Violet", "Green", "Red"],
-        correctAnswer: [2],
+        correctAnswer: 2
     } , {
         question: "What is sometimes called the Evening Star and sometimes called the Morning Star?", 
         answers: ["Venus", "Mars", "Bellatrix"],
-        correctAnswer: [0],
+        correctAnswer: 0
     } , {
         question: "Caroline Herschel discovered eight comets, her brother William discovered which planet?", 
         answers: ["Jupiter", "Mercury", "Uranus"],
-        correctAnswer: [2],
+        correctAnswer: 2
     } , {
         question: "Miranda, Bianca, Ophelia, Portia, and Cordelia are all moons of Uranus, they are also characters in which man's plays?", 
         answers: ["Samuel Beckett", "William Shakespeare", "George Bernard Shaw"],
-        correctAnswer: [1],    
+        correctAnswer: 1    
     } , {
         question: "The four moons orbiting Jupiter are Io, Ganymede, Callisto, and Europa. Who discovered them?", 
         answers: ["Gallileo Galilei", "Johannes Kepler", "Nicolaus Copernicus"],
-        correctAnswer: [1],  
+        correctAnswer: 1  
     }];
 
         // setup the object model for the game to run
@@ -60,20 +60,39 @@ $(document).on('click','#end',function(){
             for(var i=0; i<questions.length; i++){
                 $('#interiorContainer').append('<h2>' + questions[i].question + '<h2>');
                 for (var j=0; j<questions[i].answers.length; j++){
-                    $("#interiorContainer").append("<p><input type = 'radio' name= ' question- " + i + " ' value= ' " + questions[i].answers[j] + " ' > " + questions[i].answers[j] + "<br><p>");
+                    $("#interiorContainer").append("<p><input type = 'radio' name='question-" + i + "'value='" + j + "'>" + questions[i].answers[j] + "<br><p>");
             }
         }
         $('#interiorContainer').append('<br><button id="end">Done!</button>')
     },
         //  define game over function, see if correct answer is checked, add to correct/incorrect tally
         finished: function(){
-            $.each($('input[name="question-0"]:checked'), function(){
-            if ($(this).val()==questions[0].correctAnswer){
-                game.correct++;
-            } else { 
-                game.incorrect++;
-            }
-        })
+
+
+    //     for (var i=0; i<questions.length; i++){ 
+    //         game.checking(i)
+    //     }
+    // },
+    //       checking: function(i){   
+    //         $.each($("input[name='question-"+i+"']:checked"), function() {
+    //             console.log($(this).val())
+    //         if ($(this).val()== questions[i].correctAnswer){
+    //             game.correct++;
+    //             console.log("hjkl"+i)
+    //         } else { 
+    //             game.incorrect++;
+    //             console.log("asdf")
+    //         }
+    //     })
+    
+    $.each($('input[name="question-0"]:checked'), function(){
+        if ($(this).val()==questions[0].correctAnswer){
+            game.correct++;
+        } else { 
+            game.incorrect++;
+        }
+    })
+
         $.each($('input[name="question-1"]:checked'), function(){
             if ($(this).val()==questions[1].correctAnswer){
                 game.correct++;
@@ -114,13 +133,14 @@ $(document).on('click','#end',function(){
                 game.correct++;
             } else { 
                 game.incorrect++;
-            }
-        });
+            } 
+        })
         this.result();
+        
         // create results page that replaces the questions page
         },
-
-        result:function(){
+    
+        result: function(){
             clearInterval(timer);
             $('#interiorContainer h2').remove();
             $('#interiorContainer').html("<h3>Congratulations</h3>");
@@ -129,6 +149,6 @@ $(document).on('click','#end',function(){
             $('#interiorContainer').append("<h4>Unanswered questions: "+ (questions.length-(this.incorrect+this.correct))+"</h4>");
         }
     }
-
+    
 
 });
